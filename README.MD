@@ -30,7 +30,7 @@ Além disso, essa nota fiscal também pode ser apresentada em diferentes formato
 ## 🧪 Techs
 This project was develop with the following technologies:
 
-- [.NET 7 Console Application](https://docs.microsoft.com/pt-br/dotnet/core/dotnet-7)
+- [.NET 8 Console Application](https://docs.microsoft.com/pt-br/dotnet/core/dotnet-7)
 
 ## How can I use?
 
