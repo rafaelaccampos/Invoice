@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoice", "Invoice\Invoice.csproj", "{DE36D30E-B146-4DA7-BC8C-0A24A3F96198}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoice", "Invoice\Invoice.csproj", "{DE36D30E-B146-4DA7-BC8C-0A24A3F96198}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoice.IntegrationTests", "Invoice.IntegrationTests\Invoice.IntegrationTests.csproj", "{48EF3A86-1627-4D7B-A3A4-0BE709DCD7B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoice.IntegrationTests", "Invoice.IntegrationTests\Invoice.IntegrationTests.csproj", "{48EF3A86-1627-4D7B-A3A4-0BE709DCD7B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoice.Data", "Invoice.Data\Invoice.Data.csproj", "{BA57CB71-2884-46D3-A4D4-C04A46B509BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{48EF3A86-1627-4D7B-A3A4-0BE709DCD7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48EF3A86-1627-4D7B-A3A4-0BE709DCD7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48EF3A86-1627-4D7B-A3A4-0BE709DCD7B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA57CB71-2884-46D3-A4D4-C04A46B509BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA57CB71-2884-46D3-A4D4-C04A46B509BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA57CB71-2884-46D3-A4D4-C04A46B509BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA57CB71-2884-46D3-A4D4-C04A46B509BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
