@@ -7,7 +7,15 @@ namespace Invoice.IntegrationTests.Specs
         [Test]
         public async Task DeveGerarNotaFiscalDeCaixa() 
         {
-            var invoiceContext = _context
+            //var contract = new
+            //{
+            //    Id = Guid.NewGuid(),
+            //    "Prestação de Serviços Escolares",
+            //    6000,
+            //    12,
+            //    DateTime.Now,
+            //};
+            //var invoiceContext = _context.Contracts.Add()
         }
     }
 }

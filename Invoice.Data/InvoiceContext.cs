@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Invoice.Domain.Contracts.Entities;
+using Invoice.Domain.Payments.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Invoice.Data
 {

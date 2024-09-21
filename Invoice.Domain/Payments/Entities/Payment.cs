@@ -1,4 +1,6 @@
-﻿namespace Invoice.Data.Dtos
+﻿using Invoice.Domain.Contracts.Entities;
+
+namespace Invoice.Domain.Payments.Entities
 {
     public class Payment
     {
