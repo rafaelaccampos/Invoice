@@ -6,6 +6,7 @@ namespace Invoice.Domain.Payments.Entities
     {
         public Guid Id { get; set; }
 
+        public Guid IdContract { get; set; }
         public Contract Contract { get; set; } = null!;
 
         public decimal Amount { get; set; }
