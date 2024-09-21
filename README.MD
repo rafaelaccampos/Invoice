@@ -12,10 +12,8 @@ Nesse projeto, o foco será na geração de nota fiscal de serviço e para isso 
 - Regime contábil de caixa: a emissão de nota é identificada com base no pagamento, ou seja, se entrou dinheiro no caixa.
 - Regime de competência: a emissão de nota é identificada com base na entrega do serviço, ou seja, independente do pagamento.
 
-- Além disso, essa nota fiscal também pode ser apresentada em diferentes formatos, como pdf e excel.
-
-**Exemplo**
-- As mensalidades de uma faculdade são dividas em 6 semestres (meses) e em 6 parcelas. Se você tiver uma parcela de 1000 reais e 6 meses de aula são 6 parcelas de 1000 reais.
+**Exemplos**
+- As mensalidades de uma faculdade são divididas em 6 semestres (meses) e em 6 parcelas. Se você tiver uma parcela de 1000 reais e 6 meses de aula são 6 parcelas de 1000 reais.
 - No exemplo acima, o regime de caixa e competência se casam.
 
 **Questionamentos**
@@ -23,6 +21,10 @@ Nesse projeto, o foco será na geração de nota fiscal de serviço e para isso 
 - A resposta está no regime:
     - Se é de caixa: Só terá uma nota fiscal de 6000 reais.
     - Se é de competência: Terá várias notas fiscais de 6000 reais.
+
+**Requisitos**
+- É necessário obter notas fiscais por caixa e competência.
+- A nota fiscal pode ser apresentada em diferentes formatos, como pdf e excel.
 
 **Anotações**
 - Atribuir um use case por classe (melhora a rastreabilidade, deixa mais limpo).
