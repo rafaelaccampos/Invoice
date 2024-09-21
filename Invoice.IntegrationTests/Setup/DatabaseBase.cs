@@ -40,7 +40,7 @@ namespace Invoice.IntegrationTests.Setup
         [TearDown]
         public void Dispose()
         {
-            _scope.Dispose();
+            _scope?.Dispose();
         }
     }
 }
