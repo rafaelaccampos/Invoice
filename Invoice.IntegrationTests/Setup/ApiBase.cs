@@ -1,6 +1,6 @@
 namespace Invoice.IntegrationTests.Setup;
 
-public class ApiBase : DatabaseBase 
+public class ApiBase : DatabaseBase
 {
     protected HttpClient _httpClient;
 
