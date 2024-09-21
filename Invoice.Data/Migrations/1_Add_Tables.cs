@@ -9,14 +9,14 @@ namespace Invoice.Data.Migrations
         {
             Create.Table("contracts")
                 .WithColumn("id_contract").AsGuid().PrimaryKey()
-                .WithColumn("description").AsString()
-                .WithColumn("amount").AsDecimal()
+                .WithColumn("description").AsString(50)
+                .WithColumn("amount").AsDecimal(18, 2)
                 .WithColumn("periods").AsInt32()
                 .WithColumn("date").AsDateTime();
             Create.Table("payments")
                 .WithColumn("id_payment").AsGuid().PrimaryKey()
                 .WithColumn("id_contract").AsGuid().ForeignKey("contracts", "id_contract")
-                .WithColumn("amount").AsInt32()
+                .WithColumn("amount").AsDecimal(18, 2)
                 .WithColumn("date").AsDateTime();
         }
 
