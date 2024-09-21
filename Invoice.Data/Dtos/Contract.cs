@@ -12,6 +12,6 @@
         
         public DateTime Date { get; set; }
 
-        public ICollection<Payment> Payments { get; set; }
+        public ICollection<Payment> Payments { get; set; } = null!;
     }
 }
