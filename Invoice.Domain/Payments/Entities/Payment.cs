@@ -5,6 +5,7 @@ namespace Invoice.Domain.Payments.Entities
     public class Payment
     {
         private Payment() { }
+
         public Payment(Contract contract, decimal amount) 
         {
             Id = Guid.NewGuid();

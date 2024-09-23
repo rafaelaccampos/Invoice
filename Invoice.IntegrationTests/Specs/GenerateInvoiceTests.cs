@@ -21,6 +21,8 @@ namespace Invoice.IntegrationTests.Specs
             _context.Payments.Add(payment);
             await _context.SaveChangesAsync();
 
+            var generateInvoice = 
+
             //var contract = new
             //{
             //    Id = Guid.NewGuid(),
