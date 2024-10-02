@@ -12,7 +12,7 @@ namespace Invoice.Domain.Payments.Entities
             Contract = contract;
             IdContract = contract.Id;
             Amount = amount;
-            Date = DateTime.Now;
+            Date = DateTime.Now.Date;
         }
 
         public Guid Id { get; private set; }
