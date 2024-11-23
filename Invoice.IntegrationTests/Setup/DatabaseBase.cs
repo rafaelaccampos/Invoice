@@ -4,43 +4,42 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Respawn;
 
-namespace Invoice.IntegrationTests.Setup
+namespace Invoice.IntegrationTests.Setup;
+
+public class DatabaseBase
 {
-    public class DatabaseBase
+    protected static IServiceScope _scope;
+    protected static InvoiceContext _context;
+    protected Faker Faker { get; } = new Faker("pt_BR");
+
+    [SetUp]
+    public async Task Setup()
     {
-        protected static IServiceScope _scope;
-        protected static InvoiceContext _context;
-        protected Faker Faker { get; } = new Faker("pt_BR");
+        _scope = TestEnvironment.Factory.Services.CreateScope();
+        _context = TestEnvironment.Factory.Services.CreateScope().ServiceProvider.GetService<InvoiceContext>()!;
 
-        [SetUp]
-        public async Task Setup()
+        var configuration = (IConfigurationRoot)TestEnvironment.Factory.Services.GetService(typeof(IConfiguration))!;
+        var connectionString = configuration.GetConnectionString("Invoice");
+
+        var respawner = await Respawner.CreateAsync(connectionString!, new RespawnerOptions
         {
-            _scope = TestEnvironment.Factory.Services.CreateScope();
-            _context = TestEnvironment.Factory.Services.CreateScope().ServiceProvider.GetService<InvoiceContext>()!;
+            TablesToIgnore =
+            [
+                "VersionInfo",
+            ]
+        });
 
-            var configuration = (IConfigurationRoot)TestEnvironment.Factory.Services.GetService(typeof(IConfiguration))!;
-            var connectionString = configuration.GetConnectionString("Invoice");
+        await respawner!.ResetAsync(connectionString!);
+    }
 
-            var respawner = await Respawner.CreateAsync(connectionString!, new RespawnerOptions
-            {
-                TablesToIgnore =
-                [
-                    "VersionInfo",
-                ]
-            });
+    public static T GetService<T>()
+    {
+        return _scope.ServiceProvider.GetService<T>()!;
+    }
 
-            await respawner!.ResetAsync(connectionString!);
-        }
-
-        public static T GetService<T>()
-        {
-            return _scope.ServiceProvider.GetService<T>()!;
-        }
-
-        [TearDown]
-        public void Dispose()
-        {
-            _scope?.Dispose();
-        }
+    [TearDown]
+    public void Dispose()
+    {
+        _scope?.Dispose();
     }
 }
