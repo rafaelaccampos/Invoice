@@ -1,4 +1,5 @@
-﻿using Invoice.Domain.Contracts.Entities;
+﻿using FluentAssertions.Execution;
+using Invoice.Domain.Contracts.Entities;
 using Invoice.Domain.Payments.Entities;
 using Invoice.IntegrationTests.Setup;
 
@@ -21,7 +22,15 @@ namespace Invoice.IntegrationTests.Specs
             _context.Payments.Add(payment);
             await _context.SaveChangesAsync();
 
-            var generateInvoice = 
+            var generateInvoice = new GenerateInvoice();
+            var invoice = invoice.Execute();
+
+            using (new AssertionScope())
+            {
+                invoice.Date.Should().Be(DateTime.Now.Date);
+                invoice.Amount.Should().Be(6000);
+            }
+
 
             //var contract = new
             //{
