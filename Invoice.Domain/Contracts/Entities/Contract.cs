@@ -2,30 +2,17 @@
 
 namespace Invoice.Domain.Contracts.Entities;
 
-public class Contract
+public class Contract(string description, decimal amount, int periods)
 {
-    public Contract(
-        string description, 
-        decimal amount,
-        int periods)
-    {
-        Id = Guid.NewGuid();
-        Description = description;
-        Amount = amount;
-        Periods = periods;
-        Date = DateTime.Now;
-        Payments = new List<Payment>();
-    }
+    public Guid Id { get; private set; } = Guid.NewGuid();
 
-    public Guid Id { get; private set; }
+    public string Description { get; private set; } = description;
 
-    public string Description { get; private set; } = null!;
+    public decimal Amount { get; private set; } = amount;
 
-    public decimal Amount { get; private set; }
+    public int Periods { get; private set; } = periods;
 
-    public int Periods { get; private set; }
+    public DateTime Date { get; private set; } = DateTime.Now;
 
-    public DateTime Date { get; private set; }
-
-    public ICollection<Payment> Payments { get; private set; } = null!;
+    public IList<Payment> Payments { get; private set; } = [];
 }

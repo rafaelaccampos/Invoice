@@ -1,4 +1,5 @@
 ﻿using FluentAssertions.Execution;
+using Invoice.Domain;
 using Invoice.Domain.Contracts.Entities;
 using Invoice.Domain.Payments.Entities;
 using Invoice.IntegrationTests.Setup;
@@ -22,7 +23,7 @@ public class GenerateInvoiceTests : DatabaseBase
         _context.Payments.Add(payment);
         await _context.SaveChangesAsync();
 
-        var generateInvoice = new GenerateInvoice();
+        var generateInvoice = new GenerateInvoice(contract);
         var invoice = invoice.Execute();
 
         using (new AssertionScope())

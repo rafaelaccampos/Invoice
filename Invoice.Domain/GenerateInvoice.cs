@@ -8,6 +8,7 @@ public class GenerateInvoice
     {
         _contractRepository = contractRepository;
     }
+
     public async Task<IList<Output>> Execute(Input input)
     {
         var output = new List<Output>();
