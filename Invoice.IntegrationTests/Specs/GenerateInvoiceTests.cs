@@ -1,4 +1,7 @@
-﻿using FluentAssertions.Execution;
+﻿using FluentAssertions;
+using FluentAssertions.Execution;
+using Invoice.Data.Contracts.Repositories;
+using Invoice.Data.Payments.Repositories;
 using Invoice.Domain;
 using Invoice.Domain.Contracts.Entities;
 using Invoice.Domain.Payments.Entities;
@@ -23,13 +26,21 @@ public class GenerateInvoiceTests : DatabaseBase
         _context.Payments.Add(payment);
         await _context.SaveChangesAsync();
 
-        var generateInvoice = new GenerateInvoice(contract);
-        var invoice = generateInvoice.Execute();
+        var contractRepository = new ContractRepository(_context);
+        var paymentRepository = new PaymentRepository(_context);
+
+        var generateInvoice = new GenerateInvoice(contractRepository, paymentRepository);
+        var contractInput = new ContractInput
+        {
+            Month = DateTime.Now.Month, 
+            Year = DateTime.Now.Year
+        };
+        var invoices = await generateInvoice.Execute(contractInput);
 
         using (new AssertionScope())
         {
-            invoice.Date.Should().Be(DateTime.Now.Date);
-            invoice.Amount.Should().Be(6000);
+            invoices.First().Date.Should().Be(DateTime.Now.Date);
+            invoices.First().Amount.Should().Be(6000);
         }
 
 

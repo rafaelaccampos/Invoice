@@ -18,4 +18,9 @@
     <ProjectReference Include="..\Invoice.Data\Invoice.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Dtos\" />
+    <Folder Include="Payments\" />
+  </ItemGroup>
+
 </Project>

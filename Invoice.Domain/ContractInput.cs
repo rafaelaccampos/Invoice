@@ -4,5 +4,5 @@ public class ContractInput
 {
     public int Month { get; set; }
 
-    public int Number { get; set; }
+    public int Year { get; set; }
 }

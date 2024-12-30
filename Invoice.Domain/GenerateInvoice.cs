@@ -1,24 +1,35 @@
 ﻿namespace Invoice.Domain;
 
-public class GenerateInvoice(IContractRepository contractRepository)
+public class GenerateInvoice(IContractRepository contractRepository, IPaymentRepository paymentRepository)
 {
     private readonly IContractRepository _contractRepository = contractRepository;
+    private readonly IPaymentRepository _paymentRepository = paymentRepository;
 
     public async Task<IList<ContractOutput>> Execute(ContractInput contractInput)
     {
-        var output = new List<ContractOutput>();
-        var contracts = _contractRepository.List();
+        var contracts = await _contractRepository.List();
+        IList<ContractOutput> contractsOutput = [];
 
-        if(contractInput.Type == "cash")
+        foreach(var contract in contracts)
         {
-            foreach (var payment in contracts.Payments)
+            var payments = await _paymentRepository.GetPaymentsByContract(contract.Id);
+
+            foreach(var payment in payments)
             {
-                if(payment.Date.GetMonth() != contractInput.Month || payment.date.GetFullYear() != contractInput.Year {
+                if(payment.Date.Month != contractInput.Month || payment.Date.Year != contractInput.Year)
+                {
                     continue;
                 }
 
-                output.push();
+                contractsOutput =
+                [
+                    new() {
+                        Date = payment.Date,
+                        Amount = payment.Amount,
+                    }
+                ];
             }
         }
+        return contractsOutput;
     }
 }
