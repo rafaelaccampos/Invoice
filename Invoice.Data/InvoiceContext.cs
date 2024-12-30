@@ -4,14 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Invoice.Data;
 
-public class InvoiceContext : DbContext
+public class InvoiceContext(DbContextOptions<InvoiceContext> options) 
+    : DbContext(options)
 {
-    public InvoiceContext(DbContextOptions<InvoiceContext> options)
-        : base(options) 
-    {
-
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(InvoiceContext).Assembly);

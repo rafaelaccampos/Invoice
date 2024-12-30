@@ -1,7 +1,8 @@
-﻿namespace Invoice.Domain
+﻿using Invoice.Domain.Contracts.Entities;
+
+namespace Invoice;
+
+public interface IContractRepository
 {
-    public interface IContractRepository
-    {
-        object List();
-    }
+    Task<IList<Contract>> List();
 }

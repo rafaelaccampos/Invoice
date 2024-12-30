@@ -24,7 +24,7 @@ public class GenerateInvoiceTests : DatabaseBase
         await _context.SaveChangesAsync();
 
         var generateInvoice = new GenerateInvoice(contract);
-        var invoice = invoice.Execute();
+        var invoice = generateInvoice.Execute();
 
         using (new AssertionScope())
         {
