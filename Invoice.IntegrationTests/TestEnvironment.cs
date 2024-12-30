@@ -1,3 +1,4 @@
+using Invoice.IntegrationTests.Setup;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ public class TestEnvironment
                 .AddJsonFile("appsettings.Tests.json")
                 .Build();
 
+            DatabaseCreator.CreateDatabase(configuration.GetConnectionString("Invoice")!);
             builder.UseConfiguration(configuration);
         });
     }

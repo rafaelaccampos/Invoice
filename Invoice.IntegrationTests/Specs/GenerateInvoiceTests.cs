@@ -42,16 +42,5 @@ public class GenerateInvoiceTests : DatabaseBase
             invoices.First().Date.Should().Be(DateTime.Now.Date);
             invoices.First().Amount.Should().Be(6000);
         }
-
-
-        //var contract = new
-        //{
-        //    Id = Guid.NewGuid(),
-        //    "Prestação de Serviços Escolares",
-        //    6000,
-        //    12,
-        //    DateTime.Now,
-        //};
-        //var invoiceContext = _context.Contracts.Add()
     }
 }

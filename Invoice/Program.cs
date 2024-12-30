@@ -15,7 +15,6 @@ builder.Services.AddFluentMigratorCore()
         .ScanIn(typeof(AddTables).Assembly).For.Migrations()
     );
 
-
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();
