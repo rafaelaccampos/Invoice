@@ -6,13 +6,13 @@ public class Payment
 {
     private Payment() { }
 
-    public Payment(Contract contract, decimal amount) 
+    public Payment(Contract contract, decimal amount, DateTime date) 
     {
         Id = Guid.NewGuid();
         Contract = contract;
         IdContract = contract.Id;
         Amount = amount;
-        Date = DateTime.Now.Date;
+        Date = date;
     }
 
     public Guid Id { get; private set; }

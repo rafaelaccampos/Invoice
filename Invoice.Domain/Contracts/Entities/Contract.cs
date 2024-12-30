@@ -2,7 +2,7 @@
 
 namespace Invoice.Domain.Contracts.Entities;
 
-public class Contract(string description, decimal amount, int periods)
+public class Contract(string description, decimal amount, int periods, DateTime date)
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
 
@@ -12,7 +12,7 @@ public class Contract(string description, decimal amount, int periods)
 
     public int Periods { get; private set; } = periods;
 
-    public DateTime Date { get; private set; } = DateTime.Now;
+    public DateTime Date { get; private set; } = date;
 
     public IList<Payment> Payments { get; private set; } = [];
 }

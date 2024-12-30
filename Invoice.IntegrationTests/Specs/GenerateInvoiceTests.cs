@@ -14,15 +14,11 @@ public class GenerateInvoiceTests : DatabaseBase
     [Test]
     public async Task DeveGerarNotaFiscalPorRegimeDeCaixa() 
     {
-        //Preciso inserir no banco as duas tabelas Contract e Payment
-        //Preciso chamar GenerateInvoice
-        //E o assert com a data e o valor do pagamento
-
-        var contract = new Contract("Prestação de Serviços Escolares", 6000, 12);
+        var contract = new Contract("Prestação de Serviços Escolares", 6000, 12, DateTime.Now.Date);
         _context.Contracts.Add(contract);
         await _context.SaveChangesAsync();
 
-        var payment = new Payment(contract, 6000);
+        var payment = new Payment(contract, 6000, DateTime.Now.Date);
         _context.Payments.Add(payment);
         await _context.SaveChangesAsync();
 
@@ -33,7 +29,8 @@ public class GenerateInvoiceTests : DatabaseBase
         var contractInput = new ContractInput
         {
             Month = DateTime.Now.Month, 
-            Year = DateTime.Now.Year
+            Year = DateTime.Now.Year,
+            Type = "cash"
         };
         var invoices = await generateInvoice.Execute(contractInput);
 
@@ -41,6 +38,50 @@ public class GenerateInvoiceTests : DatabaseBase
         {
             invoices.First().Date.Should().Be(DateTime.Now.Date);
             invoices.First().Amount.Should().Be(6000);
+        }
+    }
+
+    [Test]
+    public async Task DeveGerarNotaFiscalPorRegimeDeCompetencia()
+    {
+        var contract = new Contract("Prestação de Serviços Escolares", 500, 12, new DateTime(2024, 01, 01));
+        _context.Contracts.Add(contract);
+        await _context.SaveChangesAsync();
+
+        var payments = new List<Payment>
+        {
+            new(contract, 500, new DateTime(2024, 01, 01)),
+            new(contract, 500, new DateTime(2024, 02, 01)),
+            new(contract, 500, new DateTime(2024, 03, 01)),
+            new(contract, 500, new DateTime(2024, 04, 01)),
+            new(contract, 500, new DateTime(2024, 05, 01)),
+            new(contract, 500, new DateTime(2024, 06, 01)),
+            new(contract, 500, new DateTime(2024, 07, 01)),
+            new(contract, 500, new DateTime(2024, 08, 01)),
+            new(contract, 500, new DateTime(2024, 09, 01)),
+            new(contract, 500, new DateTime(2024, 10, 01)),
+            new(contract, 500, new DateTime(2024, 11, 01)),
+            new(contract, 500, new DateTime(2024, 12, 01)),
+        };
+        _context.Payments.AddRange(payments);
+        await _context.SaveChangesAsync();
+
+        var contractRepository = new ContractRepository(_context);
+        var paymentRepository = new PaymentRepository(_context);
+
+        var generateInvoice = new GenerateInvoice(contractRepository, paymentRepository);
+        var contractInput = new ContractInput
+        {
+            Month = 1,
+            Year = 2024,
+            Type = "accrual"
+        };
+        var invoices = await generateInvoice.Execute(contractInput);
+
+        using (new AssertionScope())
+        {
+            invoices.First().Date.Should().Be(new DateTime(2024, 01, 01));
+            invoices.First().Amount.Should().Be(500);
         }
     }
 }

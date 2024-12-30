@@ -1,6 +1,6 @@
 ﻿namespace Invoice.Domain;
 
-public class ContractOutput
+public class InvoiceOutput
 {
     public DateTime Date { get; set; }
 

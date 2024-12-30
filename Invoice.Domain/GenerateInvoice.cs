@@ -5,10 +5,10 @@ public class GenerateInvoice(IContractRepository contractRepository, IPaymentRep
     private readonly IContractRepository _contractRepository = contractRepository;
     private readonly IPaymentRepository _paymentRepository = paymentRepository;
 
-    public async Task<IList<ContractOutput>> Execute(ContractInput contractInput)
+    public async Task<IList<InvoiceOutput>> Execute(ContractInput contractInput)
     {
         var contracts = await _contractRepository.List();
-        IList<ContractOutput> contractsOutput = [];
+        IList<InvoiceOutput> invoicesOutput = [];
 
         foreach(var contract in contracts)
         {
@@ -21,7 +21,7 @@ public class GenerateInvoice(IContractRepository contractRepository, IPaymentRep
                     continue;
                 }
 
-                contractsOutput =
+                invoicesOutput =
                 [
                     new() {
                         Date = payment.Date,
@@ -30,6 +30,6 @@ public class GenerateInvoice(IContractRepository contractRepository, IPaymentRep
                 ];
             }
         }
-        return contractsOutput;
+        return invoicesOutput;
     }
 }
