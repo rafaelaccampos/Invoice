@@ -44,7 +44,7 @@ public class GenerateInvoiceTests : DatabaseBase
     [Test]
     public async Task DeveGerarNotaFiscalPorRegimeDeCompetencia()
     {
-        var contract = new Contract("Prestação de Serviços Escolares", 500, 12, new DateTime(2024, 01, 01));
+        var contract = new Contract("Prestação de Serviços Escolares", 6000, 12, new DateTime(2024, 01, 01));
         _context.Contracts.Add(contract);
         await _context.SaveChangesAsync();
 
