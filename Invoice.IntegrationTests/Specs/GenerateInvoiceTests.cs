@@ -51,17 +51,6 @@ public class GenerateInvoiceTests : DatabaseBase
         var payments = new List<Payment>
         {
             new(contract, 500, new DateTime(2024, 01, 01)),
-            new(contract, 500, new DateTime(2024, 02, 01)),
-            new(contract, 500, new DateTime(2024, 03, 01)),
-            new(contract, 500, new DateTime(2024, 04, 01)),
-            new(contract, 500, new DateTime(2024, 05, 01)),
-            new(contract, 500, new DateTime(2024, 06, 01)),
-            new(contract, 500, new DateTime(2024, 07, 01)),
-            new(contract, 500, new DateTime(2024, 08, 01)),
-            new(contract, 500, new DateTime(2024, 09, 01)),
-            new(contract, 500, new DateTime(2024, 10, 01)),
-            new(contract, 500, new DateTime(2024, 11, 01)),
-            new(contract, 500, new DateTime(2024, 12, 01)),
         };
         _context.Payments.AddRange(payments);
         await _context.SaveChangesAsync();

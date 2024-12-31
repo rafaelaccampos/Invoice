@@ -1,4 +1,6 @@
-﻿namespace Invoice.Domain;
+﻿using Invoice.Domain.Payments.Entities;
+
+namespace Invoice.Domain;
 
 public class GenerateInvoice(IContractRepository contractRepository, IPaymentRepository paymentRepository)
 {
@@ -12,22 +14,46 @@ public class GenerateInvoice(IContractRepository contractRepository, IPaymentRep
 
         foreach(var contract in contracts)
         {
-            var payments = await _paymentRepository.GetPaymentsByContract(contract.Id);
-
-            foreach(var payment in payments)
+            if(contractInput.Type == "cash")
             {
-                if(payment.Date.Month != contractInput.Month || payment.Date.Year != contractInput.Year)
-                {
-                    continue;
-                }
+                var payments = await _paymentRepository.GetPaymentsByContract(contract.Id);
 
-                invoicesOutput =
-                [
-                    new() {
+                foreach (var payment in payments)
+                {
+                    if (payment.Date.Month != contractInput.Month || payment.Date.Year != contractInput.Year)
+                    {
+                        continue;
+                    }
+
+                    invoicesOutput =
+                    [
+                        new() {
                         Date = payment.Date,
                         Amount = payment.Amount,
+                        }
+                    ];
+                }
+            }
+            else
+            {
+                var period = 0;
+                while(period <= contract.Periods)
+                {
+                    var date = contract.Date.AddMonths(period++);
+
+                    if (date.Month != contractInput.Month || date.Year != contractInput.Year)
+                    {
+                        continue;
                     }
-                ];
+                    var amount = contract.Amount / contract.Periods;
+                    invoicesOutput = 
+                    [
+                        new() {
+                        Date = date,
+                        Amount = amount,
+                        }
+                    ];
+                }
             }
         }
         return invoicesOutput;
