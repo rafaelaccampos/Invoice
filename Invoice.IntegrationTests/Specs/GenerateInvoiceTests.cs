@@ -25,7 +25,7 @@ public class GenerateInvoiceTests : DatabaseBase
         var contractRepository = new ContractRepository(_context);
         var paymentRepository = new PaymentRepository(_context);
 
-        var generateInvoice = new GenerateInvoice(contractRepository, paymentRepository);
+        var generateInvoice = new GenerateInvoice(contractRepository);
         var contractInput = new ContractInput
         {
             Month = DateTime.Now.Month, 
@@ -58,7 +58,7 @@ public class GenerateInvoiceTests : DatabaseBase
         var contractRepository = new ContractRepository(_context);
         var paymentRepository = new PaymentRepository(_context);
 
-        var generateInvoice = new GenerateInvoice(contractRepository, paymentRepository);
+        var generateInvoice = new GenerateInvoice(contractRepository);
         var contractInput = new ContractInput
         {
             Month = 1,

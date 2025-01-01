@@ -14,5 +14,5 @@ public class Contract(string description, decimal amount, int periods, DateTime 
 
     public DateTime Date { get; private set; } = date;
 
-    public IList<Payment> Payments { get; private set; } = [];
+    public List<Payment> Payments { get; set; } = [];
 }

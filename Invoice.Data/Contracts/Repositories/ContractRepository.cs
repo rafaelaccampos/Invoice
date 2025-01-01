@@ -10,6 +10,14 @@ public class ContractRepository(InvoiceContext invoiceContext) : IContractReposi
     public async Task<IList<Contract>> List()
     {
         var contracts = await _invoiceContext.Contracts.ToListAsync();
+
+        foreach (var contract in contracts) 
+        {
+            var payments = await _invoiceContext.Payments
+                .Where(x => x.IdContract == contract.Id)
+                .ToListAsync();
+            contract.Payments.AddRange(payments);
+        }
         return contracts;
     }
 }
