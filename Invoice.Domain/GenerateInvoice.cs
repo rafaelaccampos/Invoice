@@ -1,6 +1,4 @@
-﻿using Invoice.Domain.Payments.Entities;
-
-namespace Invoice.Domain;
+﻿namespace Invoice.Domain;
 
 public class GenerateInvoice(IContractRepository contractRepository, IPaymentRepository paymentRepository)
 {
