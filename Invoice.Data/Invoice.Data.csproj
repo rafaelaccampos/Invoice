@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Invoice.Domain\Invoice.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Payments\Repositories\" />
+  </ItemGroup>
+
 </Project>

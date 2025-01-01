@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Invoice.Data.Contracts.Repositories;
-using Invoice.Data.Payments.Repositories;
 using Invoice.Domain;
 using Invoice.Domain.Contracts.Entities;
 using Invoice.Domain.Payments.Entities;
@@ -23,7 +22,6 @@ public class GenerateInvoiceTests : DatabaseBase
         await _context.SaveChangesAsync();
 
         var contractRepository = new ContractRepository(_context);
-        var paymentRepository = new PaymentRepository(_context);
 
         var generateInvoice = new GenerateInvoice(contractRepository);
         var contractInput = new ContractInput
@@ -56,7 +54,6 @@ public class GenerateInvoiceTests : DatabaseBase
         await _context.SaveChangesAsync();
 
         var contractRepository = new ContractRepository(_context);
-        var paymentRepository = new PaymentRepository(_context);
 
         var generateInvoice = new GenerateInvoice(contractRepository);
         var contractInput = new ContractInput
