@@ -30,7 +30,7 @@ Nesse projeto, o foco será na geração de nota fiscal de serviço e para isso 
 - Atribuir um use case por classe (melhora a rastreabilidade, deixa mais limpo).
 
 ## 🧪 Techs
-This project was develop with the following technologies:
+Esse projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - [.NET 8 Console Application](https://docs.microsoft.com/pt-br/dotnet/core/dotnet-7)
 
