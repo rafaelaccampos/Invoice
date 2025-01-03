@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Invoice.Data.Mappers;
+namespace Invoice.Data.Payments.Mappers;
 
 public class PaymentMap : IEntityTypeConfiguration<Payment>
 {
