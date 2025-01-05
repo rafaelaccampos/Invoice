@@ -11,46 +11,15 @@ public class GenerateInvoice(IContractRepository contractRepository)
 
         foreach(var contract in contracts)
         {
-            if(contractInput.Type == "cash")
-            {
-                foreach (var payment in contract.Payments)
-                {
-                    if (payment.Date.Month != contractInput.Month || payment.Date.Year != contractInput.Year)
-                    {
-                        continue;
-                    }
+            var invoices = contract.GenerateInvoices(contractInput.Type, contractInput.Month, contractInput.Year);
 
-                    invoicesOutput =
-                    [
-                        new() {
-                        Date = payment.Date,
-                        Amount = payment.Amount,
-                        }
-                    ];
-                }
-            }
-            else
+            invoices.Select(invoice => new InvoiceOutput
             {
-                var period = 0;
-                while(period <= contract.Periods)
-                {
-                    var date = contract.Date.AddMonths(period++);
-
-                    if (date.Month != contractInput.Month || date.Year != contractInput.Year)
-                    {
-                        continue;
-                    }
-                    var amount = contract.Amount / contract.Periods;
-                    invoicesOutput = 
-                    [
-                        new() {
-                        Date = date,
-                        Amount = amount,
-                        }
-                    ];
-                }
-            }
+                Date = invoice.Date,
+                Amount = invoice.Amount
+            }).ToList().ForEach(invoiceOutput => invoicesOutput.Add(invoiceOutput));
         }
+
         return invoicesOutput;
     }
 }
