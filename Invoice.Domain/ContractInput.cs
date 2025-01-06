@@ -6,5 +6,5 @@ public class ContractInput
 
     public int Year { get; set; }
 
-    public string Type { get; set; }
+    public required string Type { get; set; }
 }
